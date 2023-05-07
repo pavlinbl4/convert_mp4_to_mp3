@@ -3,6 +3,8 @@ from tkinter import filedialog
 import os
 from pathlib import Path
 
+from main_modul import work_with_file
+
 
 def gui_window():
     root_tk = customtkinter.CTk()  # tkinter.Tk()  # create the Tk window like you normally do
@@ -42,6 +44,7 @@ def gui_window():
         return
 
     def choose_folder_3():
+        work_with_file(folders_paths,'mp4','mp3')
         root_tk.destroy()
 
     button1 = customtkinter.CTkButton(master=root_tk,
@@ -84,4 +87,4 @@ def gui_window():
 
 
 if __name__ == '__main__':
-    print(gui_window())
+    gui_window()
