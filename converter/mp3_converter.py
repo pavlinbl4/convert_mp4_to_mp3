@@ -12,8 +12,3 @@ def convert_mp4_to_mp3(mp4_file_path, mp3_file_path):
     # Close video and audio objects
     audio.close()
     video.close()
-
-
-if __name__ == '__main__':
-    convert_mp4_to_mp3('/Volumes/big4photo/Movies/АГАТА КРИСТИ/Агата Кристи - Корнуолльская тайна.mp4',
-                       '/Volumes/big4photo/Movies/АГАТА КРИСТИ/Агата Кристи - Корнуолльская тайна.mp3' )
