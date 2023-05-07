@@ -1,20 +1,30 @@
 import customtkinter
 from tkinter import filedialog
 import os
+from pathlib import Path
 
 
 def gui_window():
     root_tk = customtkinter.CTk()  # tkinter.Tk()  # create the Tk window like you normally do
-    root_tk.geometry("600x340")
+
+    window_width = 600
+    window_height = 340
+    screen_width = root_tk.winfo_screenwidth()
+    screen_height = root_tk.winfo_screenheight()
+    x = int(screen_width / 4)
+    y = int(screen_height / 2 - window_height / 2)
+    root_tk.geometry(f"{window_width}x{window_height}+{x}+{y}")
+
     root_tk.title("Convert video mp4 files to mp3 audio")
 
     customtkinter.set_appearance_mode("Dark")
+    home_folder = Path().home()
 
-    folders_paths = {1: '/Downloads', 2: '/Music'}
-
+    folders_paths = {1: f'{home_folder}/Downloads', 2: f'{home_folder}/Music'}
 
     def choose_folder_1():
-        folder_path = filedialog.askdirectory(initialdir='/Users/evgeniy/Downloads')
+
+        folder_path = filedialog.askdirectory(initialdir=f'{home_folder}/Downloads')
         if folder_path != '':
             folders_paths[1] = folder_path
         text1 = customtkinter.CTkTextbox(root_tk, fg_color='transparent', width=500, height=10)
@@ -22,9 +32,8 @@ def gui_window():
         text1.insert(customtkinter.END, f'Source path - {folders_paths[1]}')
         return
 
-
     def choose_folder_2():
-        folder_path = filedialog.askdirectory(initialdir='/Users/evgeniy/Music')
+        folder_path = filedialog.askdirectory(initialdir=f'{home_folder}/Music')
         if len(folder_path) > 1:
             folders_paths[2] = folder_path
         text2 = customtkinter.CTkTextbox(root_tk, fg_color='transparent', width=500, height=10)
@@ -32,11 +41,8 @@ def gui_window():
         text2.insert(customtkinter.END, f'Destination path - {os.path.abspath(folders_paths[2])}')
         return
 
-
     def choose_folder_3():
         root_tk.destroy()
-
-
 
     button1 = customtkinter.CTkButton(master=root_tk,
                                       height=40,
@@ -75,6 +81,7 @@ def gui_window():
 
     root_tk.mainloop()
     return folders_paths
+
 
 if __name__ == '__main__':
     print(gui_window())
