@@ -44,7 +44,7 @@ def gui_window():
         return
 
     def choose_folder_3():
-        work_with_file(folders_paths,'mp4','mp3')
+        work_with_file(folders_paths, 'mp4', 'mp3')
         root_tk.destroy()
 
     button1 = customtkinter.CTkButton(master=root_tk,
